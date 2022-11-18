@@ -11,10 +11,7 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
     private string $username;
     private string $password;
     private string $email;
-    private string $firstName;
-    private string $lastName;
-    private ?string $gender;
-    private array $roles = [];
+    private bool $admin;
 
     /**
      * @return int
@@ -71,86 +68,43 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getFirstName(): string
+    public function getadmin(): string
     {
-        return $this->firstName;
+        return $this->admin;
     }
 
     /**
-     * @param string $firstName
+     * @param bool $admin
      * @return User
      */
-    public function setFirstName(string $firstName): User
+    public function setadmin(string $admin): User
     {
-        $this->firstName = $firstName;
+        $this->admin = $admin;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLastName(): string
+    public function getPassword(): string
     {
-        return $this->lastName;
+        return $this->password;
     }
 
-    /**
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName(string $lastName): User
+    public function setPassword($password, bool $hash = false): User
     {
-        $this->lastName = $lastName;
+        if ($hash) {
+            $password = password_hash($password, PASSWORD_ARGON2ID);
+        }
+        $this->password = $password;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getGender(): string
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param string $gender
-     * @return User
-     */
-    public function setGender(string $gender): User
-    {
-        $this->gender = $gender;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        $roles[] = "ROLE_USER";
-        return $roles;
-    }
-
-    /**
-     * @param array $roles
-     * @return User
-     */
-    public function setRoles(array $roles): User
-    {
-        $this->roles = $roles;
-        return $this;
-    }
-
-    public function getHashedPassword(): string
-    {
-        return 'coucou';
-    }
-
-    public function passwordMatch(string $plainPwd): bool
-    {
-        return true;
+    public function passwordMatch(string $plainPwd, string $Pwd): bool
+    {   
+        if (password_verify($plainPwd, $Pwd)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

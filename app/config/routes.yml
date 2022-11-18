@@ -1,5 +1,5 @@
 index:
-    path: /
+    path: /post
     controller: App\Controller\PostController
     action: home
 
@@ -15,3 +15,6 @@ login:
     path: /login
     controller: App\Controller\SecurityController
     action: login
+    methods:
+        - GET
+        - POST

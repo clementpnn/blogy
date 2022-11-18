@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface PasswordProtectedInterface
 {
-    public function getHashedPassword(): string;
+    public function getPassword(): string;
 
-    public function passwordMatch(string $plainPwd): bool;
+    public function passwordMatch(string $plainPwd, string $Pwd): bool;
 }
