@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS User
   username  VARCHAR(255) NOT NULL,
   password  VARCHAR(255) NOT NULL,
   email     VARCHAR(255) NOT NULL,
-  admin     BOOLEAN      NOT NULL
+  admin     INT          NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Post
