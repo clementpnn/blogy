@@ -4,15 +4,14 @@ post:
     action: post
     methods:
         - GET
-        - POST
 
-# showOne:
-#     path: /post/{id}
-#     controller: App\Controller\PostController
-#     action: showOne
-#     methods:
-#         - GET
-#         - POST
+postId:
+    path: /postId/{id}
+    controller: App\Controller\PostIdController
+    action: postId
+    methods:
+        - GET
+        - POST
 
 login:
     path: /
