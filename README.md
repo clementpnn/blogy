@@ -1,13 +1,10 @@
-# 🎉 Welcome to [blog_docker](https://github.com/clementpnn/blog_docker)
-
-<!-- ![basics](./src/images/home.png) -->
+# 🎉 Welcome to [blogy](https://github.com/clementpnn/blogy)
 
 ## 🚀 Technologies
 
 The languages frameworks used on the project :
 
 - [PHP](https://www.php.net/)
-<!-- - [Tailwind](https://tailwindcss.com) -->
 
 ## 🧞 Commands
 
@@ -18,8 +15,6 @@ All commands are run from the root of the project, from a terminal:
 | `docker compose up -d`                                            | Create Docker container        |
 | `docker compose down`                                             | Delete Docker container        |
 | `cd app && composer dump-autoload`                                | Install  autoload              |
-<!-- | `pnpm install`                                                    | Installs dependencies          | -->
-<!-- | `pnpx tailwindcss -i ./src/input.css -o ./src/output.css --watch` | look at the new tailwind class | -->
 
 ## 🔥 Start project
  
