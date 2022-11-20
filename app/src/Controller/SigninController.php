@@ -12,8 +12,7 @@ class SigninController extends AbstractController
     #[Route('/signin', name: "signin", methods: ["GET"])]
     public function signin()
     {
-
-        $this->render("signin.php", [], "titre de la page");
+        $this->render("signin.php");
 
         header("Location: /signin?error=notfound1");
         exit;
@@ -38,9 +37,10 @@ class SigninController extends AbstractController
 
                 $user = (new User())->setUsername($formname)->setEmail($formMail)->setPassword($formPwd, true)->setAdmin($formAdmin);
                 $id = $userManager->insertUser($user);
-                
-                // $this->render("addPost.php", ['id' => $id], "add Post");
-                header("Location: /post?id=$id");
+
+                $_SESSION['id'] = $id;
+
+                header("Location: /post");
                 exit;
             }
         }

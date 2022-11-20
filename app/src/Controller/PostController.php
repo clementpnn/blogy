@@ -16,6 +16,6 @@ class PostController extends AbstractController
 
         $this->render("post.php", [
             "posts" => $posts,
-        ], "Tous les posts");
+        ]);
     }
 }

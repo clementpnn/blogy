@@ -17,6 +17,6 @@ class PostIdController extends AbstractController
 
         $this->render("postId.php", [
           "post" => $post,
-      ], "Un post");
+      ]);
     }
 }

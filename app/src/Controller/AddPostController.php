@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Factory\PDOFactory;
 use App\Manager\PostManager;
+use App\Manager\UserManager;
 use App\Entity\Post;
+use App\Entity\User;
 use App\Route\Route;
 
 class AddPostController extends AbstractController
@@ -12,7 +14,7 @@ class AddPostController extends AbstractController
     #[Route('/addPost', name: "addPost", methods: ["GET"])]
     public function addPost()
     {
-      $this->render("addPost.php", [], "addPost");
+      $this->render("addPost.php");
 
       header("Location: /signin?error=notfound8");
       exit;
@@ -20,23 +22,12 @@ class AddPostController extends AbstractController
 
     #[Route('/addPost', name: "addPost", methods: ["POST"])]
     public function addPostdb()
-    {  
-        // Ajoutez // à l'URL.
-        $url = "http://"; 
-        
-        // Ajoutez l'hôte (nom de domaine, ip) à l'URL.
-        $url .= $_SERVER['HTTP_HOST']; 
-        
-        // Ajouter l'emplacement de la ressource demandée à l'URL
-        $url .= $_SERVER['REQUEST_URI'];
-        
-        $searchId = $url;
-        $searchId = explode("=",$searchId);
-        
-        $id = $searchId[1];
+    {
+        $user = $_SESSION['id'];
 
         $formTitle = $_POST['title'];
         $formText = $_POST['text'];
+        
         // $nameFile = $_FILES["image"]["name"];
         // $typeFile = $_FILES["image"]["type"];
         // $tmpFile = $_FILES["image"]["tmp_name"];
@@ -65,9 +56,9 @@ class AddPostController extends AbstractController
 
       $postManager = new PostManager(new PDOFactory());
 
-      $post = (new Post())->setTitle($formTitle)->setContent($formText)->setDate($date)->setAuthor($id)->setImage('image');
+      $post = (new Post())->setTitle($formTitle)->setContent($formText)->setDate($date)->setAuthor($user)->setImage('image');
       $postManager->insertPost($post);
       
-      $this->render("addPost.php", [], "add Post");
+      header("Location: /post");
     }
 }

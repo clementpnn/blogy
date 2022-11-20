@@ -12,7 +12,7 @@ class SecurityController extends AbstractController
     #[Route('/', name: "login", methods: ["GET"])]
     public function login()
     {
-        $this->render("home.php", [], "Blogy");
+        $this->render("home.php");
 
         header("Location: /?error=notfound1");
         exit;
@@ -28,7 +28,10 @@ class SecurityController extends AbstractController
             $userManager = new UserManager(new PDOFactory());
             $user = $userManager->getByMail($formEmail);
             $data = $userManager->getPwd($formEmail);
-            $id = $data['id'];
+
+            $user = (new User())->setId($data['id'])->setAdmin($data['admin']);
+
+            $_SESSION['id'] = $data['id'];
 
             if (!$user) {
                 header("Location: /?error=notfound3");
@@ -37,8 +40,7 @@ class SecurityController extends AbstractController
 
             if ($user->passwordMatch($formPswd, $data['password'])) {
 
-                // $this->render("addPost.php", ['id' => $data['id']], "add Post");
-                header("Location: /post?id=$id");
+                header("Location: /post");
                 exit;
             } else {
                 header("Location: /?error=4");
