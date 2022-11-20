@@ -9,28 +9,26 @@ use App\Route\Route;
 
 class PostController extends AbstractController
 {
-    #[Route('/', name: "homepage", methods: ["GET"])]
-    public function home()
+    #[Route('/post', name: "post", methods: ["GET"])]
+    public function post()
     {
-        $manger = new PostManager(new PDOFactory());
-        $posts = $manger->getAllPosts();
+        $manager = new PostManager(new PDOFactory());
+        $posts = $manager->getAllPosts();
 
-        $this->render("home.php", [
+        $this->render("post.php", [
             "posts" => $posts,
-            "trucs" => "test",
-            "machin" => 42
         ], "Tous les posts");
     }
 
-    /**
-     * @param $id
-     * @param $truc
-     * @param $machin
-     * @return void
-     */
-    #[Route('/post/{id}/{truc}/{machin}', name: "francis", methods: ["GET"])]
-    public function showOne($id, $truc, $machin)
-    {
-        var_dump($id, $truc);
-    }
+    // /**
+    //  * @param $id
+    //  * @param $truc
+    //  * @param $machin
+    //  * @return void
+    //  */
+    // #[Route('/post/{id}', name: "id", methods: ["GET"])]
+    // public function showOne($id)
+    // {
+    //     var_dump($id);
+    // }
 }
