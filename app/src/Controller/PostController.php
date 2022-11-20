@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Factory\PDOFactory;
 use App\Manager\PostManager;
-use App\Manager\UserManager;
 use App\Route\Route;
 
 class PostController extends AbstractController
@@ -19,16 +18,4 @@ class PostController extends AbstractController
             "posts" => $posts,
         ], "Tous les posts");
     }
-
-    // /**
-    //  * @param $id
-    //  * @param $truc
-    //  * @param $machin
-    //  * @return void
-    //  */
-    // #[Route('/post/{id}', name: "id", methods: ["GET"])]
-    // public function showOne($id)
-    // {
-    //     var_dump($id);
-    // }
 }

@@ -5,17 +5,20 @@
 /** @var App\Entity\Post[] $posts */
 foreach ($posts as $post) {
     $id = $post['id'];
-    echo $post['title'];
-    echo '<br>';
-    echo $post['username'];
-    echo '<br>';
-    echo $post['date'];
-    echo '<br>';
-    echo $post['content'];
-    echo '<br>';
-    echo $post['image'];
-    echo '<br>';
-    echo '<a href="http://localhost:1234/post?id=$id">Voir plus</a>';
-    echo '<br>';
-    echo '<br>';
+    ?>
+    <span><?= $post['title'] ?></span>
+    <br>
+    <span><?= $post['username'] ?></span>
+    <br>
+    <span><?= $post['date'] ?></span>
+    <br>
+    <span><?= $post['content'] ?></span>
+    <br>
+    <span><?= $post['image'] ?></span>
+    <br>
+    <a href="http://localhost:1234/postId/<?=$id?>">Voir plus</a>
+    <br>
+    <br>
+    <?php
+
 }
