@@ -14,58 +14,36 @@ class SecurityController extends AbstractController
     {
         $this->render("home.php", [], "Blogy");
 
-    header("Location: /?error=notfound1");
-    exit;
+        header("Location: /?error=notfound1");
+        exit;
     }
 
     #[Route('/', name: "login", methods: ["POST"])]
     public function logindb()
     {
-        $formEmail= $_POST['email-login'];
-        $formPswd = $_POST['password-login'];
+        if (!empty($_POST['email-login']) && !empty($_POST['password-login'])) {
+            $formEmail= $_POST['email-login'];
+            $formPswd = $_POST['password-login'];
 
-        if (!empty($formEmail) && !empty($formPswd)) {
             $userManager = new UserManager(new PDOFactory());
             $user = $userManager->getByMail($formEmail);
-            $pwd = $userManager->getPwd($formEmail);
+            $data = $userManager->getPwd($formEmail);
+            $id = $data['id'];
 
             if (!$user) {
                 header("Location: /?error=notfound3");
                 exit;
             }
 
-            if ($user->passwordMatch($formPswd, $pwd)) {
+            if ($user->passwordMatch($formPswd, $data['password'])) {
 
-                $this->render("logged.php", [], "titre de la page");
+                // $this->render("addPost.php", ['id' => $data['id']], "add Post");
+                header("Location: /post?id=$id");
+                exit;
             } else {
                 header("Location: /?error=4");
                 exit;
             }
-        }
-    }
-
-    #[Route('/', name: "signin", methods: ["POST"])]
-    public function signindb()
-    {
-        $formname = $_POST['name'];
-        $formMail = $_POST['email'];
-        $formPwd = $_POST['password'];
-        $formCPwd = $_POST['confirm-password'];
-        $formAdmin = $_POST['admin'];
-
-        if (!empty($formname) && !empty($formMail) && !empty($formPwd) && !empty($formCPwd) && !empty($formAdmin) && $formPwd === $formCPwd) {
-
-            $userManager = new UserManager(new PDOFactory());
-
-            if (!$userManager->verifyMail($formMail)) {
-                header("Location: /?error=6");
-                exit;
-            }
-
-            $user = (new User())->setUsername($formname)->setEmail($formMail)->setPassword($formPwd, true)->setadmin($formAdmin);
-            $id = $userManager->insertUser($user);
-            
-            $this->render("logged.php", [], "$id");
         }
     }
 }

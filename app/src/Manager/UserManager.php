@@ -45,24 +45,22 @@ class UserManager extends BaseManager
         $data = $query->fetch(\PDO::FETCH_ASSOC);
 
         if ($data) {
-            return $data['password'];
+            return $data;
         }
 
         return null;
     }
 
-    public function verifyMail(string $mail): bool
+    public function verifyMail(string $mail)
     {
         $query = $this->pdo->prepare("SELECT * FROM User WHERE email = :email");
         $query->bindValue("email", $mail, \PDO::PARAM_STR);
         $query->execute();
-        $data = $query->fetch(\PDO::FETCH_ASSOC);
-        $row = $data->rowCount();
+        $data = $query->fetch();
 
-        if($row == 0) {
+        if(!$data) {
             return true;
         }
-
         return false;
     }
 
@@ -72,7 +70,7 @@ class UserManager extends BaseManager
         $query->bindValue("username", $user->getUsername(), \PDO::PARAM_STR);
         $query->bindValue("password", $user->getPassword(), \PDO::PARAM_STR);
         $query->bindValue("email", $user->getEmail(), \PDO::PARAM_STR);
-        $query->bindValue("admin", $user->getUsername(), \PDO::PARAM_BOOL);
+        $query->bindValue("admin", $user->getAdmin(), \PDO::PARAM_INT);
         $query->execute();
 
         return $this->pdo->lastInsertId();

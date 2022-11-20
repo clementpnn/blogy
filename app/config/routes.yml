@@ -1,20 +1,39 @@
-index:
+post:
     path: /post
     controller: App\Controller\PostController
-    action: home
-
-showOne:
-    path: /post/{id}
-    controller: App\Controller\PostController
-    action: showOne
+    action: post
     methods:
         - GET
         - POST
 
+# showOne:
+#     path: /post/{id}
+#     controller: App\Controller\PostController
+#     action: showOne
+#     methods:
+#         - GET
+#         - POST
+
 login:
-    path: /login
+    path: /
     controller: App\Controller\SecurityController
     action: login
+    methods:
+        - GET
+        - POST
+
+signin:
+    path: /signin
+    controller: App\Controller\SigninController
+    action: signin
+    methods:
+        - GET
+        - POST
+
+addPost:
+    path: /addPost
+    controller: App\Controller\AddPostController
+    action: addPost
     methods:
         - GET
         - POST
