@@ -35,12 +35,19 @@ class SigninController extends AbstractController
                     exit;
                 }
 
-                $user = (new User())->setUsername($formname)->setEmail($formMail)->setPassword($formPwd, true)->setAdmin($formAdmin);
-                $id = $userManager->insertUser($user);
+                if ($formAdmin == 1 or $formAdmin == 0) {
+                    $user = (new User())->setUsername($formname)->setEmail($formMail)->setPassword($formPwd, true)->setAdmin($formAdmin);
+                    $id = $userManager->insertUser($user);
 
-                $_SESSION['id'] = $id;
+                    $_SESSION['id'] = $id;
+                    $_SESSION['admin'] = $formAdmin;
 
-                header("Location: /post");
+
+                    header("Location: /post");
+                    exit;
+                }
+
+                header("Location: /signin?error=notfound12");
                 exit;
             }
         }

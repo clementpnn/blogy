@@ -36,3 +36,11 @@ addPost:
     methods:
         - GET
         - POST
+
+admin:
+    path: /admin
+    controller: App\Controller\AdminController
+    action: admin
+    methods:
+        - GET
+        - POST

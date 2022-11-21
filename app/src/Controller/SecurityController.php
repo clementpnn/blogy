@@ -32,6 +32,7 @@ class SecurityController extends AbstractController
             $user = (new User())->setId($data['id'])->setAdmin($data['admin']);
 
             $_SESSION['id'] = $data['id'];
+            $_SESSION['admin'] = $data['admin'];
 
             if (!$user) {
                 header("Location: /?error=notfound3");

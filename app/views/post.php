@@ -3,6 +3,14 @@
 <a href="/addPost">Créé un poste</a>
 <br>
 <a href="/profil">Profil</a>
+<?php
+if ($_SESSION['admin'] == 1) {
+?>
+<br>
+<a href="/admin">Admin</a>
+<?php
+}
+?>
 <br>
 <br>
 <br>

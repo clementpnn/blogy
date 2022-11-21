@@ -7,6 +7,6 @@
   <label for="password-login">password</label>
   <input type="password" name="password-login" id="password" required>
 
-  <input type="submit" value="tkt">
+  <input type="submit" value="envoyer">
 </form>
 <a href="http://localhost:1234/signin">Sign in</a>

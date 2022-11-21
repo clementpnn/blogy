@@ -11,7 +11,7 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
     private string $username;
     private string $password;
     private string $email;
-    private int $admin;
+    private string | int $admin;
 
     /**
      * @return int
@@ -79,7 +79,7 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
      * @param int $admin
      * @return User
      */
-    public function setAdmin(string $admin)
+    public function setAdmin(string | int $admin)
     {
         $this->admin = $admin;
         return $this;

@@ -10,17 +10,11 @@ class UserManager extends BaseManager
     /**
      * @return User[]
      */
-    public function getAllUsers(): array
+    public function getAllUsers()
     {
         $query = $this->pdo->query("select * from User");
-
-        $users = [];
-
-        while ($data = $query->fetch(\PDO::FETCH_ASSOC)) {
-            $users[] = new User($data);
-        }
-
-        return $users;
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
     }
 
     public function getByMail(string $email): ?User
@@ -51,6 +45,16 @@ class UserManager extends BaseManager
         return null;
     }
 
+    public function getById(string $id)
+    {
+        $query = $this->pdo->prepare("SELECT * FROM User WHERE id = :id");
+        $query->bindValue("id", $id, \PDO::PARAM_INT);
+        $query->execute();
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
     public function verifyMail(string $mail)
     {
         $query = $this->pdo->prepare("SELECT * FROM User WHERE email = :email");
@@ -62,6 +66,16 @@ class UserManager extends BaseManager
             return true;
         }
         return false;
+    }
+
+    public function updateUser($user, $id): void
+    {
+        $query = $this->pdo->prepare("UPDATE User SET (username, password, email, admin) VALUES (:username, :password, :email, :admin) WHERE 'id' = $id");
+        $query->bindValue("username", $user->getUsername(), \PDO::PARAM_STR);
+        $query->bindValue("password", $user->getPassword(), \PDO::PARAM_STR);
+        $query->bindValue("email", $user->getEmail(), \PDO::PARAM_STR);
+        $query->bindValue("admin", $user->getAdmin(), \PDO::PARAM_INT);
+        $query->execute();
     }
 
     public function insertUser(User $user): int
