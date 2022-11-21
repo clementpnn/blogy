@@ -16,6 +16,6 @@
   <label for="admin">admin</label>
   <input type="text" name="admin" id="admin" required>
 
-  <input type="submit" value="tkt">
+  <input type="submit" value="envoyer">
 </form>
 <a href="http://localhost:1234/">Log in</a>
