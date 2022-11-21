@@ -1,5 +1,7 @@
 # 🎉 Welcome to [blogy](https://github.com/clementpnn/blogy)
 
+![](./app/src/images/forReadme.png)
+
 ## 🚀 Technologies
 
 The languages frameworks used on the project :
