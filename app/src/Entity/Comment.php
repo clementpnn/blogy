@@ -5,8 +5,8 @@ namespace App\Entity;
 class Comment extends BaseEntity
 {
     private int $id;
-    private string $postId;
-    private string $commentId;
+    private int | null  $postId;
+    private int | null $commentId;
     private string $content;
     private int $author;
     private $date;
@@ -32,7 +32,7 @@ class Comment extends BaseEntity
         /**
      * @return int
      */
-    public function getPostId(): int
+    public function getPostId(): int | null
     {
         return $this->postId;
     }
@@ -41,7 +41,7 @@ class Comment extends BaseEntity
      * @param int $postId
      * @return Comment
      */
-    public function setPostId(int $postId): Comment
+    public function setPostId(int | null $postId): Comment | null
     {
         $this->postId = $postId;
         return $this;
@@ -50,7 +50,7 @@ class Comment extends BaseEntity
         /**
      * @return int
      */
-    public function getCommentId(): int
+    public function getCommentId(): int | null
     {
         return $this->commentId;
     }
@@ -59,7 +59,7 @@ class Comment extends BaseEntity
      * @param int $id
      * @return Comment
      */
-    public function setCommentId(int $commentId): Comment
+    public function setCommentId(int | null $commentId): Comment | null
     {
         $this->commentId = $commentId;
         return $this;

@@ -26,9 +26,10 @@ class CommentManager extends BaseManager
 
     public function insertComment(Comment $comment): void
     {
-        $query = $this->pdo->prepare("INSERT INTO Comment (content, post, date, author) VALUES (:content, :post, STR_TO_DATE(:date, '%d/%m/%Y %H:%i:%s' ), :author)");
+        $query = $this->pdo->prepare("INSERT INTO Comment (content, post, comment, date, author) VALUES (:content, :post, :comment, STR_TO_DATE(:date, '%d/%m/%Y %H:%i:%s' ), :author)");
         $query->bindValue("content", $comment->getContent(), \PDO::PARAM_STR);
         $query->bindValue("post", $comment->getPostId(), \PDO::PARAM_INT);
+        $query->bindValue("comment", $comment->getCommentId(), \PDO::PARAM_INT);
         $query->bindValue("date", $comment->getDate()->format('d/m/Y H:i:s'));
         $query->bindValue("author", $comment->getAuthor(), \PDO::PARAM_INT);
         $query->execute();

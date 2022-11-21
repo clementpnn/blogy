@@ -37,11 +37,23 @@ class PostIdController extends AbstractController
 
             $commentManager = new CommentManager(new PDOFactory());
 
-            $comment = (new Comment())->setPostId($formPost)->setContent($formContent)->setAuthor($_SESSION['id'])->setDate($date);
+            $comment = (new Comment())->setPostId($formPost)->setCommentId(null)->setContent($formContent)->setAuthor($_SESSION['id'])->setDate($date);
             $commentManager->insertComment($comment);
-
-            header("Location: /post");
-            exit;
         }
+
+        if (!empty($_POST['comment']) && !empty($_POST['content-comment'])) {
+          $formComment= $_POST['comment'];
+          $formContent = $_POST['content-comment'];
+
+          $date = new \DateTime();
+
+          $commentManager = new CommentManager(new PDOFactory());
+
+          $comment = (new Comment())->setCommentId($formComment)->setPostId(null)->setContent($formContent)->setAuthor($_SESSION['id'])->setDate($date);
+          $commentManager->insertComment($comment);
+      }
+
+      header("Location: /postId/$id");
+      exit;
     }
 }

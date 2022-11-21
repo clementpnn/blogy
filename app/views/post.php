@@ -1,6 +1,8 @@
 <?php /** @var App\Entity\User $user */ ?>
 <h1>Tous les posts</h1>
-<a href="http://localhost:1234/addPost">Créé un poste</a>
+<a href="/addPost">Créé un poste</a>
+<br>
+<a href="/profil">Profil</a>
 <br>
 <br>
 <br>
@@ -20,7 +22,7 @@ foreach ($posts as $post) {
     <br>
     <span><?= $post['image'] ?></span>
     <br>
-    <a href="http://localhost:1234/postId/<?=$id?>">Voir plus</a>
+    <a href="/postId/<?=$id?>">Voir plus</a>
     <br>
     <br>
     <?php

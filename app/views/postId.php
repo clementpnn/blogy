@@ -37,6 +37,15 @@ foreach ($comments as $comment) {
     <br>
     <span>Contenue : <?= $comment['content'] ?></span>
     <br>
+    <form action="" method="post">
+        <input type="hidden" name="comment" value="<?=$comment['id']?>">
+
+        <label for="content">Commentaire au commentaire</label>
+        <input type="text" name="content-comment" required>
+
+        <input type="submit" value="envoyer">
+    </form>
+    <br>
     <br>
     <?php
 
