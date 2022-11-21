@@ -23,8 +23,6 @@ class AddPostController extends AbstractController
     #[Route('/addPost', name: "addPost", methods: ["POST"])]
     public function addPostdb()
     {
-        $user = $_SESSION['id'];
-
         $formTitle = $_POST['title'];
         $formText = $_POST['text'];
         
@@ -56,7 +54,7 @@ class AddPostController extends AbstractController
 
       $postManager = new PostManager(new PDOFactory());
 
-      $post = (new Post())->setTitle($formTitle)->setContent($formText)->setDate($date)->setAuthor($user)->setImage('image');
+      $post = (new Post())->setTitle($formTitle)->setContent($formText)->setDate($date)->setAuthor($_SESSION['id'])->setImage('image');
       $postManager->insertPost($post);
       
       header("Location: /post");
