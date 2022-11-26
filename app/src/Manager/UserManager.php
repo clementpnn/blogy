@@ -10,9 +10,9 @@ class UserManager extends BaseManager
     /**
      * @return User[]
      */
-    public function getAllUsers()
+    public function getAllUsers($id)
     {
-        $query = $this->pdo->query("select * from User");
+        $query = $this->pdo->query("SELECT * FROM User WHERE id != $id");
         $data = $query->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
     }
@@ -66,6 +66,12 @@ class UserManager extends BaseManager
             return true;
         }
         return false;
+    }
+
+    public function delUser($id)
+    {
+        $query = $this->pdo->prepare("DELETE FROM User WHERE 'id' = $id");
+        $query->execute();
     }
 
     public function updateUser($user, $id): void

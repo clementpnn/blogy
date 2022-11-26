@@ -12,7 +12,7 @@ class AdminController extends AbstractController
     public function admin()
     {
         $manager = new UserManager(new PDOFactory());
-        $users = $manager->getAllUsers();
+        $users = $manager->getAllUsers($_SESSION['id']);
 
         $this->render("admin.php", [
             "users" => $users,

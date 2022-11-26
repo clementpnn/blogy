@@ -1,5 +1,6 @@
 <?php /** @var App\Entity\User $user */ ?>
 <h1>Tous les posts</h1>
+<?php if($_SESSION['id']) {?>
 <a href="/addPost">Créé un poste</a>
 <br>
 <a href="/profil">Profil</a>
@@ -9,6 +10,7 @@ if ($_SESSION['admin'] == 1) {
 <br>
 <a href="/admin">Admin</a>
 <?php
+}
 }
 ?>
 <br>

@@ -13,6 +13,22 @@
 <br>
 
 <?php
+    if ($_SESSION['id'] == $post[0]["author"] or $_SESSION['admin']== 1) { ?>
+        <form action="" method="post">
+            <input type="hidden" name="comment" value="<?=$post[0]["id"]?>">
+
+            <label for="content">Modifier</label>
+            <input type="text" name="content-comment" required>
+
+            <input type="submit" value="envoyer">
+        </form>
+        <button>supprimer</button>
+
+<?php } ?>
+<br>
+<br>
+
+<?php
     if ($_SESSION['id']) { ?>
 
 <form action="" method="post">
@@ -37,14 +53,31 @@ foreach ($comments as $comment) {
     <br>
     <span>Contenue : <?= $comment['content'] ?></span>
     <br>
-    <form action="" method="post">
-        <input type="hidden" name="comment" value="<?=$comment['id']?>">
+    <?php if ($_SESSION['id']) { ?>
+        <form action="" method="post">
+            <input type="hidden" name="comment" value="<?=$comment['id']?>">
 
-        <label for="content">Commentaire au commentaire</label>
-        <input type="text" name="content-comment" required>
+            <label for="content">Commentaire au commentaire</label>
+            <input type="text" name="content-comment" required>
 
-        <input type="submit" value="envoyer">
-    </form>
+            <input type="submit" value="envoyer">
+        </form>
+
+    <?php if ($_SESSION['id'] == $comment["author"] or $_SESSION['admin']== 1) { ?>
+        <form action="" method="post">
+            <input type="hidden" name="comment" value="<?=$comment["id"]?>">
+
+            <label for="content">Modifier</label>
+            <input type="text" name="content-comment" required>
+
+            <input type="submit" value="envoyer">
+        </form>
+        <button>supprimer</button>
+        <br>
+
+    <?php } ?>
+
+    <?php } ?>
     <br>
     <br>
     <?php

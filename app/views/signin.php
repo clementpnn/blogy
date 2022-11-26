@@ -13,7 +13,7 @@
   <label for="confirm-password">confirm-password</label>
   <input type="password" name="confirm-password" id="password" required>
 
-  <label for="admin">admin</label>
+  <label for="admin">admin (0 ou 1)</label>
   <input type="text" name="admin" id="admin" required>
 
   <input type="submit" value="envoyer">

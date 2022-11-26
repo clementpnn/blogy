@@ -6,6 +6,7 @@ foreach ($users as $user) {
     <br>
     <span>Email : <?= $user['email'] ?></span>
     <br>
+    <span>Supprimer</span>
     <br>
     <br>
 <?php
